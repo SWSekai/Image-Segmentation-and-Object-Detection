@@ -26,10 +26,10 @@ def detect_and_draw_desktops(image_path):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     contours, _ = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    # 尋找矩形桌面
+    # 矩形桌面
     for cnt in contours:
         area = cv2.contourArea(cnt)
-        if area < 1500:  # 過濾小物體
+        if area < 500:  # 過濾小物體
             continue
 
         # 近似多邊形
