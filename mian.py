@@ -11,18 +11,19 @@ def detect_and_draw_desktops(image_path):
 
     output_img = img.copy()
 
+    # 桌面HSV範圍
     img = hsv_adjust(image_path)
     if img is None:
         print("無法獲取HSV範圍，請先調整HSV值。")
         return
-    # 桌面HSV範圍
-
+    
     # 形態學
     kernel = np.ones((5,5),np.uint8)
     img = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
     img = cv2.morphologyEx(img, cv2.MORPH_OPEN, kernel)
 
     # 尋找輪廓
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     contours, _ = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # 尋找矩形桌面

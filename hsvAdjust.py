@@ -45,7 +45,6 @@ def hsv_adjust(image_path):
         
         cv2.imshow(windowName, img_adjust)
         if cv2.waitKey(1) == 27:  # 按 'ESC' 鍵退出
-            cv2.destroyAllWindows()
             return img_adjust
 
 
